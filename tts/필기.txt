@@ -1,0 +1,40 @@
+프로젝트 생성
+- Name: "tts"
+- Language: Java
+- Type: Gradle - Groovy
+- Group: "com.test"
+- Artifact: "tts"
+- Package name: "com.test.java"
+- Java: 21
+- Packaging: jar
+- Dependencies:
+    - Spring Web
+    - Lombok
+    - OpenAI
+    - Thymeleaf
+
+
+TTS, Text to Speech
+- whisper 그대로 사용
+- 6가지 프리셋 음성
+
+1. application.yml
+
+2. "com.test.java.controller" > "TestController.java"
+
+3. templates > "index.html"
+
+4. "com.test.java.config" > "AiConfig.java"
+
+5. "com.test.java.service" > "AiService.java"
+
+
+
+
+
+
+
+
+
+
+    

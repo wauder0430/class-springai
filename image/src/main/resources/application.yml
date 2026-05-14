@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: image
+    
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      
+      # 이미지 생성 모델
+      # - DALL-E 2
+      # - DALL-E 3
+      # OpenAI는 DALL·E 2 / DALL·E 3 모델을 2026년 5월 12일 종료
+      # - gtp-image-1
+      # - gtp-image-2
+      image:
+        options:
+          model: gpt-image-1
+
+          
+
+            
+            
+            
+            
+            
+                              

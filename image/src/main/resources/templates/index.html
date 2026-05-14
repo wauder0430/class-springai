@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf</title>
+    <link rel="stylesheet" href="http://bit.ly/3WJ5ilK" />
+</head>
+<body>
+    <!-- index.html -->
+    <h1>Spring AI <small>Image</small></h1>
+    
+    <form method="POST" action="/">
+    <table>
+        <tr>
+            <td style="width: 600px;"><textarea name="message" required class="full">귀여운 5개월짜리 강아지가 사람처럼 탁자에 앉아서 노트북으로 코딩을 하는 이미지를 만들어줘.
+- 뒤의 배경은 사무실이야
+- 창문으로 공원이 보여.
+- 강아지 표정은 에러때문에 곤란한 표정으로 해줘
+- 의인화를 시켜줘
+- 완성도가 높게 나오게 해줘(아마추어가 아닌 그림을 전문으로 하는 작가가 만든 것처럼 해줘)
+            </textarea></td>
+            <td><button>이미지 생성하기</button></td>
+        </tr>
+    </table>
+    </form>
+    
+    <hr>
+    
+    <h2>결과</h2>
+    
+    <div th:if="${img}">
+        <img th:src="'data:image/png;base64,' + ${img}"
+            style="width: 760px; display: block; margin: 10px auto;">
+    </div>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

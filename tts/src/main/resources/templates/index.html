@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf</title>
+    <link rel="stylesheet" href="http://bit.ly/3WJ5ilK" />
+    <style>
+        #result {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- index.html -->
+    <h1>Spring AI <small>Text to Speech</small></h1>
+    
+    <form id="form1" enctype="multipart/form-data">
+        <input type="file" id="attach" name="attach" accept=".txt" required>
+        <button type="button" id="btn1">업로드</button>
+    </form>
+       
+    <hr>
+    
+    <div>
+        <audio id="audio1" controls></audio>
+    </div>
+    
+    <script>
+    
+        
+        document.getElementById('btn1').onclick = async function() {
+            
+            const formData = new FormData();
+            formData.append("attach", document.getElementById("attach").files[0]);
+                        
+            try {
+            
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                
+                    const reader = response.body.getReader(); // 빨대 꽂기
+                    const chunks = [];
+                    
+                    const contentType = response.headers.get('Content-Type');
+        
+                    while (true) {
+                    
+                        //서버에서 보낸 데이터를 조금씩 읽기
+                        const { done, value } = await reader.read(); 
+                        if (done) break;
+                        chunks.push(value);
+                    }
+        
+                    const blob = new Blob(chunks, { type: contentType || 'audio/mpeg' });
+                    const url = URL.createObjectURL(blob);
+        
+                    audio1.src = url;
+                    audio1.play();
+                    
+                }
+            
+            } catch (e) {
+                console.log(e);
+            }
+            
+        };
+    
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

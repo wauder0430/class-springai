@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf</title>
+    <link rel="stylesheet" href="http://bit.ly/3WJ5ilK" />
+    <style>
+        #result {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- index.html -->
+    <h1>Spring AI <small>Speech to Text</small></h1>
+    
+    <form id="form1" enctype="multipart/form-data">
+        <input type="file" id="attach" name="attach" accept="audio/*,video/*" required>
+        <button type="button" id="btn1">업로드</button>
+    </form>
+    
+    <hr>
+    
+    <div id="message" class="message"></div>
+    
+    <hr>
+    
+    <div id="result" class="message"></div>
+    
+    <script>
+    
+        
+        document.getElementById('btn1').onclick = async function() {
+            
+            const formData = new FormData();
+            formData.append("attach", document.getElementById("attach").files[0]);
+            
+            document.getElementById('message').textContext = '음성을 업로드/분석합니다.';
+            
+            try {
+            
+                const response = await fetch('/transcribe', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                
+                    const data = await response.json();
+                    console.log(data);
+                    
+                    document.getElementById('result').textContent = data;
+                    
+                }
+            
+            } catch (e) {
+                console.log(e);
+            }
+            
+        };
+    
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

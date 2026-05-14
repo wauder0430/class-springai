@@ -1,0 +1,37 @@
+프로젝트 생성
+- Name: "imageanalysis"
+- Language: Java
+- Type: Gradle - Groovy
+- Group: "com.test"
+- Artifact: "imageanalysis"
+- Package name: "com.test.java"
+- Java: 21
+- Packaging: jar
+
+- Dependencies:
+    - Spring Web
+    - Lombok
+    - OpenAI
+    - Thymeleaf
+    
+
+
+파일 생성하기
+
+1. application.yml
+    - prompt에서 복사
+    
+2. "com.test.java.controller" > "TestController.java"    
+    
+3. "com.test.java.entity" > "ImageAnalysis.java"
+
+4. 외부 경로 + 내부 가상 경로 > 매핑
+    - com.test.java.config > "WebConfig.java"    
+    
+    
+    
+    
+    
+    
+    
+    

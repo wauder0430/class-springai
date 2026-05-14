@@ -1,0 +1,44 @@
+프로젝트 생성
+- Name: "image"
+- Language: Java
+- Type: Gradle - Groovy
+- Group: "com.test"
+- Artifact: "image"
+- Package name: "com.test.java"
+- Java: 21
+- Packaging: jar
+
+- Dependencies:
+    - Spring Web
+    - Lombok
+    - OpenAI
+    - Thymeleaf
+
+
+파일 생성하기
+
+1. application.yml
+    - prompt에서 복사
+
+2. Config
+    - "com.test.java.config" > "AiConfig.java"
+
+3. Controller/Service
+    - "com.test.java.controller" > "TestController.java"
+    - "com.test.java.service" > "AiService.java"
+
+4. View
+    - template > template.html 복사    
+
+
+
+
+
+
+
+
+
+
+
+
+    

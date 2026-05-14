@@ -1,0 +1,35 @@
+프로젝트 생성
+- Name: "prompt"
+- Language: Java
+- Type: Gradle - Groovy
+- Group: "com.test"
+- Artifact: "prompt"
+- Package name: "com.test.java"
+- Java: 21
+- Packaging: jar
+
+- Dependencies:
+    - Spring Web
+    - Lombok
+    - OpenAI
+    - Thymeleaf
+    
+LLM
+- 단기 기억 상실증
+- LLM의 지식 > 머신 러닝
+    - 대량 자료 전달 > 기반 학습
+- LLM > 프롬프트 질문 > 이전 질문과 절대 이어지지 않음
+    
+
+
+1. AI 설정
+- application.yml
+
+2. 파일 생성하기
+- "com.test.java.controller" > "TestController.java"
+- "com.test.java.config" > "AiConfig.java"
+- "com.test.java.service" > "AiService.java"
+
+    
+    
+    
