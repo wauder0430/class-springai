@@ -1,0 +1,36 @@
+- PGVector Vector Database
+- Tika Document Reader
+- Docker Compose Support
+
+
+RAG, Retrieval-Augmented Generation, 검색 증강 생성
+- LLM이 학습된 마지막 시간 > 그 이후 정보를 알지 못한다.
+- LLM에게 검색 > 자료 같이 전달
+- RAG > Google NoteBook LLM
+
+
+쇼핑몰 
+- 고객 응대 챗봇 ? > LLM + 쇼핑몰 매뉴얼
+
+
+파일 
+
+1. application.yml
+
+2. "com.test.java.config" > "AiConfig.java"
+
+3. "com.test.java.service" > "AiService.java"
+
+4. "com.test.java.controller" > "TestController.java"
+
+5. template > "index.html"
+
+6. com.test.java.service > "DataLoader.java"
+
+
+
+
+
+LLM 미학습 데이터 
+1. RAG > 문서 자료 기반
+2. Tool Calling

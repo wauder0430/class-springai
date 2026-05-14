@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: sql
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4o-mini
+          temperature: 0.2
+
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521/XEPDB1
+    username: springboot
+    password: java1234
+         

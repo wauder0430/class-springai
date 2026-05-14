@@ -1,0 +1,18 @@
+회원(tblUser) 정보 조회
+- 홍길동의 아이디가 뭐야?
+- 고양이의 암호는 뭐야?
+
+1. Text to SQL
+2. Tool Calling 
+
+파일
+
+1. application.yml
+
+2. "com.test.java.config" > "AiConfig.java"
+
+3. "com.test.java.service" > "AiService.java"
+
+4. "com.test.java.controller" > "TestController.java"
+
+5. templates > "index.html"

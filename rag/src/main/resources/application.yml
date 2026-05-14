@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: rag
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4o-mini
+          temperature: 0.2
+      embedding:
+        options:
+          # 기본 벡터 차원은 1536차원, 최대 입력은 8192 토큰, 가격은 100만 토큰당 $0.02
+          model: text-embedding-3-small
+    
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 1536
+        initialize-schema: true
+          
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+          
+          
+          
+          
+                              

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring AI</title>
+    <link rel="stylesheet" href="http://bit.ly/3WJ5ilK" />
+    <style>
+        #result {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- index.html -->
+    <h1>Spring AI <small>RAG</small></h1>
+    
+    <div>
+        <div>
+            <input type="file" name="attach" id="attach">
+            <button type="button" id="btnAdd">등록하기</button>
+        </div>
+        <ul id="list">
+            <li>A.pdf <span>&times;</span></li>
+            <li>B.pdf <span>&times;</span></li>
+            <li>C.pdf <span>&times;</span></li>
+        </ul>
+    </div>
+    
+    <h2>질문</h2>
+    <div>
+        <input type="text" id="message" name="message" class="full" autofocus placeholder="">        
+    </div>
+    <hr>
+    <div id="result" class="message"></div>
+    
+    <script>
+    
+        window.onload = listFile;
+    
+        async function listFile() {
+            
+            const list = document.getElementById('list');
+            
+            const resp = await fetch('/files');
+            
+            if (resp.ok) {
+                const files = await resp.json(); //List<String>
+                
+                //목록 출력
+                //console.log(files);
+                
+                //<li>A.pdf <span>&times;</span></li>
+                
+                list.innerHTML = '';
+                if (files.length === 0) return;
+                
+                files.forEach(file => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `${file} <span onclick="deleteFile('${file}');">&times;</span>`;
+                    list.appendChild(li);
+                });
+                
+            }
+            
+        };
+        
+            
+        document.getElementById('message').onkeydown = async function() {
+            
+            if (event.key != 'Enter') return;
+            
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded; chatset=UTF-8'
+                },
+                body: new URLSearchParams({
+                    message: event.target.value
+                })
+            });
+            
+            if (response.ok) {
+                
+                const text = await response.text();
+                document.getElementById('result').textContent = text;             
+            }
+            
+        };
+        
+        
+        document.getElementById('btnAdd').onclick = async function() {
+        
+            const attach = document.getElementById('attach');
+            
+            const formData = new FormData();
+            formData.append('attach', attach.files[0]);
+            
+            try {
+            
+                const resp = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (resp.ok) {
+                    alert('등록 및 임베딩 완료!!');
+                    listFile();
+                } else {
+                
+                }
+            
+            } catch (e) {
+                console.log(e);
+            }
+        
+        };
+        
+        
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

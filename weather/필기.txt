@@ -1,0 +1,28 @@
+AI > Tool Calling
+
+- 오늘 비가 오는 지 확인해서 옷을 뭐입고 나갈지 추천해줘.
+- LLM 질문 > 외부 도구 호출(API) > 데이터 확보 > LLM 응답
+- 외부 API Tool Calling > 외부 API > 날씨
+- 내부 API Tool Calling > 자체 API > 
+
+- 1+1 질문 (Tool Calling) > 계산 API 호출 > 결과 > 답변
+
+LLM
+1. 학습된 내용 > gpt-4o-mini > 2023년 12월까지 학습
+
+
+
+
+파일
+
+1. application.yml
+
+2. "com.test.java.config" > "AiConfig.java"
+
+3. "com.test.java.service" > "AiService.java"
+
+4. "com.test.java.controller" > "TestController.java"
+
+5. "com.test.java.tool" > "WeatherTool.java"
+
+6. templates > "index.html"

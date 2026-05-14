@@ -1,0 +1,30 @@
+Text to SQL
+- 사용자가 질문(프롬프트)을 하면 > LLM > SQL 생성 > Oracle 질의 > 결과 > LLM > 응답
+- 기업 > 구성원 > A씨 + Item 테이블 > 전산실 의뢰 > 개발~ x N
+- 기업 > 구성원 > A씨 + Item 테이블 > LLM > 질의 + SQL > 응답
+
+일반 개발(a) vs AI 개발(b)
+1. 쿼리 형태 
+    a. 개발자가 미리 작성(정적)
+    b. AI가 상황에 따라 즉성 생성(동적)
+
+2. 결과 형태 
+    a. 형식이 고정 > ResultSet > DTO, Entity
+    b. 결과 예측 안됨 > ????
+        - Mybatis, JPA > 사용 불가
+        - Spring JDBC > Map 가능
+        
+3. 결과 구조 
+    a. DTO, Entity
+    b. Map 
+    
+
+파일 생성하기
+- src/main/resources > "script.sql"
+
+- "com.test.java.controller" > "TestController.java"
+- template > "index.html"
+
+- "com.test.java.config" > "AiConfig.java"
+- "com.test.java.entity" > "SqlResponse.java"
+- "com.test.java.service" > "AiService.java"
