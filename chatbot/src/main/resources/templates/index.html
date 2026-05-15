@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Spring AI</title>
+<link rel="stylesheet" href="http://bit.ly/3WJ5ilK" />
+<style>
+#list {
+    border: 1px solid var(--control-border-color);
+    width: auto;
+    padding: 1rem;
+    margin: 1rem;
+    height: 500px;
+    overflow: auto;
+}
+
+#list .line {
+    border-bottom: 1px dotted #CCC;
+}
+
+#list .sender {
+    font-weight: bold;
+    margin: .3rem;
+    margin-top: 1rem;
+}
+
+#list .sender.User {
+    color: cornflowerblue;
+}
+
+#list .sender.Bot {
+    color: tomato;
+}
+
+#list .sender.System {
+    color: yellowgreen;
+}
+
+#list .content {
+    margin: .3rem;
+    margin-bottom: 1rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+</style>
+</head>
+<body>
+    <!-- index.html -->
+    <h1>
+        Spring AI <small>Chatbot</small>
+    </h1>
+
+    <div class="message">호텔과 관련 질의 사항을 친절할 호텔 챗봇이 도와드립니다.</div>
+
+    <div id="list"></div>
+
+    <div>
+        <input type="text" id="message" name="message" class="full"
+            autofocus placeholder="">
+    </div>
+    <hr>
+
+
+    <script>
+            
+        document.getElementById('message').onkeydown = async function() {
+            
+            if (event.key != 'Enter') return;
+            
+            let messageText = event.target.value;
+            
+            appendMessage('User', event.target.value);
+            event.target.value = '';
+            event.target.focus();
+            
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded; chatset=UTF-8'
+                },
+                body: new URLSearchParams({
+                    message: messageText
+                })
+            });
+            
+            if (response.ok) {
+                
+                const reader = response.body.getReader();
+                
+                let botMessage = appendMessage('Bot', '');
+                let content = botMessage.querySelector('.content');                
+                   
+                await processStream(reader, content);
+            }
+            
+        };
+        
+        <!-- 호텔 대화 스크립트 -->
+        function appendMessage(sender, content) {
+        
+            const messageElement = document.createElement('div');
+            messageElement.className = 'line';
+            messageElement.innerHTML = `
+                <div class="sender ${sender}">${sender}:</div>
+                <div class="content">${content}</div>
+            `;
+            list.appendChild(messageElement);
+            list.scrollTop = list.scrollHeight;
+            return messageElement;
+        }
+    
+        async function processStream(reader, contentElement) {
+            const decoder = new TextDecoder('utf-8');
+            try {
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    contentElement.innerHTML += decoder.decode(value, { stream: true });
+                    list.scrollTop = list.scrollHeight;
+                }
+            } catch (error) {
+                console.error('Error processing stream:', error);
+                contentElement.innerHTML += '<br><span class="text-danger">[Stream interrupted]</span>';
+            }
+        }
+        
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

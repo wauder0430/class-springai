@@ -116,6 +116,53 @@
         };
         
         
+        // 파일 삭제(벡터 DB 관련 벡터들 삭제)
+        async function deleteFile(filename) {
+            
+            if(!confirm(`'${filename}'과 관련된 모든 데이터를 삭제하겠습니까?`)) return;
+            
+            try {
+                
+                const resp = await fetch(`/del?filename=${filename}`, {
+                    method: 'POST' 
+                });
+                
+                if(resp.ok) {
+                    listFile();
+                } else {
+                    alert('삭제 실패');
+                }
+                
+            } catch (e) {
+                console.log(e);
+            }
+            
+        }
+        
+        
+        document.getElementById('message').onkeydown = async function() {
+        
+            if(event.key != "Enter") return;
+            
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8;'
+                },
+                body: new URLSearchParams({ 
+                    message: event.target.value
+                })
+            });
+            
+            if(response.ok) {
+                
+                const text = await response.text();
+                
+                document.getElementById('result').textContent = text;
+                
+            }
+        };
+        
     </script>
     
 </body>
